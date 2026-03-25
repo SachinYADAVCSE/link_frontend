@@ -23,7 +23,7 @@ const Login = () => {
         const data = { "email": email, "password": password };
 
         console.log("The Data is like this,", data)
-        const response = await axios.post('http://localhost:4000/api/auth/login', data)
+        const response = await axios.post('https://linkbackend-production-51ce.up.railway.app/api/auth/login', data)
         if (response?.data?.code == 200) {
             Swal.fire({
                 title: "Login",

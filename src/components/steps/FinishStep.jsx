@@ -8,7 +8,7 @@ export default function FinishStep({ data }) {
   const handleFinish = async () => {
  
     try {
-      const res = await fetch("http://localhost:4000/api/links/createPage", {
+      const res = await fetch("https://linkbackend-production-51ce.up.railway.app/api/links/createPage", {
         method: "POST",
         // we are passing the Content-Type -- AND WE DON'T HAVE -- token
         headers: {

@@ -23,7 +23,7 @@ export default function Profile() {
   }, []);
 
   const fetchProfile = async () => {
-    const res = await fetch("http://localhost:4000/api/users/me", {
+    const res = await fetch("https://linkbackend-production-51ce.up.railway.app/api/users/me", {
       headers: { Authorization: `Bearer ${token}` }
     });
 

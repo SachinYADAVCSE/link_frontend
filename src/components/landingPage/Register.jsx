@@ -53,7 +53,7 @@ const UserRegister = () => {
       data.append('password', formData.password);
       if(formData.profile) data.append('profile.avatarUrl', formData.profile);
 
-      const response = await axios.post('http://localhost:4000/api/auth/register', data, {
+      const response = await axios.post('https://linkbackend-production-51ce.up.railway.app/api/auth/register', data, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 

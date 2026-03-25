@@ -28,7 +28,7 @@ const Tree = () => {
 
     try {
       const response = await axios.get(
-        "http://localhost:4000/api/links/pages",
+        "https://linkbackend-production-51ce.up.railway.app/api/links/pages",
         {
           headers: { Authorization: `Bearer ${token}` }
         }

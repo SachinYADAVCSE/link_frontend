@@ -1,4 +1,5 @@
 export default function ThemePanel({ theme, setTheme }) {
+
     const updateTheme = (patch) => {
       setTheme(prev => ({ ...prev, ...patch }));
     };

@@ -17,7 +17,7 @@ export default function ViewPage() {
       try {
         setLoading(true);
         const res = await axios.get(
-          `http://localhost:4000/api/public/${slug}`
+          `https://linkbackend-production-51ce.up.railway.app/api/public/${slug}`
         );
         setPage(res.data);
         setError(null);
