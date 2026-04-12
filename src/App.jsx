@@ -12,6 +12,8 @@ import Onboarding from './pages/Onboarding'
 import { UserProvider } from './context/UserContext'
 import Profile from './components/profile/Profile'
 import HomePage from './components/landingPage/HomePage'
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [storedUser, setStoredUser] = useState("")
@@ -69,6 +71,9 @@ function App() {
 
         </div>
       </UserProvider>
+
+        {/* Your routes/components */}
+        <ToastContainer position="top-right" autoClose={2000} />
     </>
   )
 }

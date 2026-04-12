@@ -68,11 +68,12 @@ const Tree = () => {
             key={page._id}
             className="w-full bg-blue-100 rounded-md flex px-6 py-4 justify-between items-center shadow"
           >
-            <div>
+            <div className='flex justify-center items-center  gap-6'>
               <p className="font-semibold text-lg">{page.title}</p>
               <p className="text-sm text-gray-500">
                 {new Date(page.createdAt).toLocaleDateString()}
               </p>
+              <p className='text-gray-700 font-medium'>{page?.url}</p>
             </div>
 
             <span className="flex items-center gap-4">

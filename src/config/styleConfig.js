@@ -45,6 +45,36 @@ export const styleConfig = {
   link: [
     { key: "backgroundColor", label: "Background", type: "color" },
     { key: "color", label: "Text Color", type: "color" },
+    {
+      key: "fontFamily",
+      label: "Font Family",
+      type: "select",
+      options: [
+        { label: "Sans", value: "sans-serif" },
+        { label: "Serif", value: "serif" },
+        { label: "Mono", value: "monospace" }
+      ]
+    },
+    {
+      key: "textAlign",
+      label: "Align",
+      type: "select",
+      options: [
+        { label: "Left", value: "left" },
+        { label: "Center", value: "center" },
+        { label: "Right", value: "right" }
+      ]
+    },
+    {
+      key: "fontWeight",
+      label: "Weight",
+      type: "select",
+      options: [
+        { label: "Regular", value: 400 },
+        { label: "Medium", value: 500 },
+        { label: "Bold", value: 700 }
+      ]
+    },
     { key: "fontSize", label: "Font Size", type: "range", min: 12, max: 32 },
 
     { key: "borderRadius", label: "Rounded", type: "range", min: 0, max: 50 },
@@ -62,5 +92,19 @@ export const styleConfig = {
     { key: "textColor", label: "Text Color", type: "color" },
     { key: "fontSize", label: "Font Size", type: "range", min: 12, max: 40 },
     { key: "borderRadius", label: "Rounded", type: "range", min: 0, max: 30 }
+  ],
+
+  folder: [
+    { key: "backgroundColor", label: "Background", type: "color" },
+    { key: "color", label: "Text Color", type: "color" },
+
+    { key: "fontSize", label: "Title Size", type: "range", min: 12, max: 32 },
+
+    { key: "borderRadius", label: "Rounded", type: "range", min: 0, max: 50 },
+    { key: "borderWidth", label: "Border Width", type: "range", min: 0, max: 10 },
+    { key: "borderColor", label: "Border Color", type: "color" },
+
+    { key: "padding", label: "Padding", type: "range", min: 0, max: 30 }
   ]
+
 };

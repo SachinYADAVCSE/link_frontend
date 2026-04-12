@@ -20,13 +20,15 @@ export default function LinkBlock({ block, theme }) {
         borderRadius: styles.borderRadius,
         borderWidth: styles.borderWidth,
         borderColor: styles.borderColor,
+        textAlign: styles.textAlign,
+        fontWeight: styles.fontWeight,
         borderStyle: styles.borderWidth ? "solid" : undefined,
 
         padding: 10,
         textDecoration: "none"
       }}
     >
-      {block.content?.text || "Link"}
+      {block.content?.title || "Link"}
     </a>
   );
 }

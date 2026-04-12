@@ -9,6 +9,7 @@ import api from "../lib/api.js";
 import ThemePanel from "./ThemePanel";
 import { BLOCK_DEFAULTS } from "../config/blockDefaults";
 import { useUser } from "../context/UserContext";
+import { toast } from "react-toastify";
 
 // Layer 1
 import {
@@ -56,6 +57,7 @@ export default function Builder() {
   const [token, setToken] = useState("");
   const [pageData, setPageData] = useState({});
   const [title, setTitle] = useState("");
+  const [published, setPublished] = useState(false);
 
   // here we have differentiated the user -- user, userData
   const { user, setUser } = useUser();
@@ -152,16 +154,16 @@ export default function Builder() {
       if (res.theme) {
         setTheme(res.theme);
       }
-      
+
       console.log("How are you doing?")
-       // here we are fetching the user details -- based on the userId -- this is we are doing for setting the headers part.
+      // here we are fetching the user details -- based on the userId -- this is we are doing for setting the headers part.
       const res_user = await api(`/users/${res.userId}`); // "userId"
       console.log("here is the fetching of the user", res_user);
 
       // we are setting the data from the useUser() --- component
       setUserData({
         _id: res_user.data._id,
-        name: res_user.data.profile.name, 
+        name: res_user.data.profile.name,
         avatar: res_user.data.profile.avatarUrl,
         bio: res_user.data.profile.bio
       });
@@ -486,15 +488,18 @@ export default function Builder() {
       }
     );
 
-    console.log(response_user.data);
+    if (response_user) {
+      console.log(response_user.data);
+      toast.success("Data Saved Successfully!");
+    } else {
+      toast.error("Data is Failed to Saved!!!");
+    }
 
     if (response) {
       console.log(response);
       setPageData(response);
       // setting the Blocks
-    }
-
-    else {
+    } else {
       console.log("Page Not Found");
     }
 
@@ -510,9 +515,12 @@ export default function Builder() {
         },
       });
       if (response) {
+        toast.success("The Page Has been Published!!!");
+        setPublished(true);
         console.log(response);
       }
     } catch (err) {
+      setPublished(false);
       console.log("Invalid Url cannot be Accessed, Cannot be Published", err);
     }
   }
@@ -545,8 +553,15 @@ export default function Builder() {
           <button onClick={saveData} className="flex items-center gap-2 bg-green-500 text-white px-3 py-2 rounded shadow hover:bg-green-700 hover:scale-105">
             <CiSaveDown2 /> Save
           </button>
-          <button onClick={publishPage} className="flex items-center gap-2 bg-blue-500 text-white px-3 py-2 rounded shadow hover:bg-blue-700 hover:scale-105">
-            <MdOutlinePublishedWithChanges /> Publish
+          <button
+            onClick={publishPage}
+            disabled={published}
+            className={`flex items-center gap-2 text-white px-3 py-2 rounded shadow 
+              ${published ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700 hover:scale-105"}
+            `}
+          >
+            <MdOutlinePublishedWithChanges />
+            {published ? "Published" : "Publish"}
           </button>
           <button onClick={clearAll} className="ml-2 text-sm text-red-600">Clear</button>
         </div>
@@ -626,8 +641,9 @@ export default function Builder() {
                 <StylePanel
                   block={selectedBlock}
                   onStyleChange={(newStyle) =>
-                    updateBlock(selectedBlock.id, { styles: newStyle })
-                  }
+                    updateBlock(selectedBlock.id, {
+                      styles: { ...selectedBlock.styles, ...newStyle }
+                    })                  }
                   onUpdate={updateBlock}
                 />
               </>
@@ -657,7 +673,7 @@ function BlockEditor({ block, onUpdate, onRemove, renderBlocks, addBlock, onClic
 
     return (
       // <div className="p-3 border rounded-lg bg-yellow-50" onClick={onClick}>
-      <div className="p-3 border rounded-lg bg-yellow-50" onClick={onClick}>
+      <div className="p-3 border rounded-lg bg-yellow-50" onClick={(e) => { e.stopPropagation(); onClick();}}>
         <div className="flex justify-between min-w-0 turncate">
           <strong>Folder</strong>
           <button onClick={onRemove} className="text-red-500">Delete</button>
