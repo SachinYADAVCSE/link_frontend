@@ -45,8 +45,8 @@ function App() {
 
           {/* <Tree /> */}
           {/* Logic for Navbar */}
-          {location.pathname.startsWith('/user') ? (<UserNavbar />)
-            : ['/register', '/login', '/'].some(path => location.pathname === path) ? (<Navbar />) : null}
+          {/* {location.pathname.startsWith('/user') ? (<UserNavbar />)
+            : ['/register', '/login', '/'].some(path => location.pathname === path) ? (<Navbar />) : null} */}
 
           <Routes>
             {/* LadingPage */}
